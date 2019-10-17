@@ -1,7 +1,8 @@
 # Alan SDK for Android
 
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/alan-ai/alan-sdk-android)](https://github.com/alan-ai/alan-sdk-android/releases)
-###[Homepage](https://alan.app/)
+
+### [Homepage](https://alan.app/)
 
 ### SDK installation
 Config **module-level** build.gradle file.
