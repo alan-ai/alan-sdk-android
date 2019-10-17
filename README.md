@@ -1,4 +1,4 @@
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/alan-ai/alan-sdk-android)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/alan-ai/alan-sdk-android)](https://github.com/alan-ai/alan-sdk-android/releases)
 
 ## SDK installation
 Config **module-level** build.gradle file.
