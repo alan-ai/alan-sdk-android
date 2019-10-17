@@ -1,6 +1,9 @@
-[![GitHub release (latest by date)](https://img.shields.io/github/v/release/alan-ai/alan-sdk-android)](https://github.com/alan-ai/alan-sdk-android/releases)
+# Alan SDK for Android
 
-## SDK installation
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/alan-ai/alan-sdk-android)](https://github.com/alan-ai/alan-sdk-android/releases)
+###[Homepage](https://alan.app/)
+
+### SDK installation
 Config **module-level** build.gradle file.
 
 ### Option 1. Add it as a Maven dependency
