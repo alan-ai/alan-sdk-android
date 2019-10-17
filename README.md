@@ -1,3 +1,5 @@
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/alan-ai/alan-sdk-android)
+
 ## SDK installation
 Config **module-level** build.gradle file.
 
@@ -16,13 +18,13 @@ repositories {
 dependencies {
 	...
 	//Adding the Alan SDK dependency
-    implementation "app.alan:sdk:3.0.4"
+    implementation "app.alan:sdk:3.0.7"
 }
 ```
 
 ### Option 2. Download aar package and include it manually
 
-Download sdk from releases section [here](https://github.com/alan-ai/alan-android-sdk/releases/download/v3.0.4/AlanSDK_3.0.4.aar)
+Download sdk from releases section [here](https://github.com/alan-ai/alan-android-sdk/releases/download/v3.0.7/AlanSDK_3.0.7.aar)
 Put in your <project>/app/libs folder (create one if needed) then modify your build.gradle file
 
 ```java
@@ -37,7 +39,7 @@ Put in your <project>/app/libs folder (create one if needed) then modify your bu
 dependencies {
 	...
 	//Alan SDK dependency
- 	implementation (name: 'AlanSdk-3.0.4', ext: 'aar')
+ 	implementation (name: 'AlanSdk-3.0.7', ext: 'aar')
 }
 ```
 
