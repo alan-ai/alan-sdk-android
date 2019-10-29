@@ -35,7 +35,7 @@ Download sdk from releases section [here](https://github.com/alan-ai/alan-androi
 Put in your <project>/app/libs folder (create one if needed) then modify your build.gradle file
 
 ```java
-	repositories {
+repositories {
 		...
 		//Add the following line to the repositories section
 	    flatDir {
@@ -163,6 +163,9 @@ class YourSimpleCallback extends BasicSdkListener {
 One can set extended logging with static method of the Alan object:
 
 `Alan.enableLogging(true);`
+
+## Sample: 
+See our example of Alan Integration [here](https://github.com/alan-ai/alan-sdk-android/tree/master/examples/AlanSampleApp)
 
 ## Have questions?
 If you have any questions or if something is missing in the documentation, please [contact us](mailto:support@alan.app), or tweet us [@alanvoiceai](https://twitter.com/alanvoiceai). We love hearing from you!).
