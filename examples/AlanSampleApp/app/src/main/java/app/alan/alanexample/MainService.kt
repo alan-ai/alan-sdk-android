@@ -14,6 +14,10 @@ import com.alan.alansdk.BasicSdkListener
 
 const val CHANNEL_ID = "ForegroundServiceChannel"
 
+
+/**
+ * One don't need this if only wants to make background working SDK
+ */
 class MainService : Service() {
 
     inner class MainServiceBinder : Binder() {

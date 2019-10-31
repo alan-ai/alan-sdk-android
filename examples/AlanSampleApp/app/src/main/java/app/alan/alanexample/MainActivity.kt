@@ -13,12 +13,10 @@ import com.alan.alansdk.Alan
 import com.alan.alansdk.BasicSdkListener
 import com.alan.alansdk.alanbase.ConnectionState
 import com.alan.alansdk.alanbase.DialogState
-import com.alan.alansdk.button.AlanButton
+import com.alan.alansdk.events.EventCommand
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-
-    private var alanButton: AlanButton? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,26 +28,22 @@ class MainActivity : AppCompatActivity() {
                         arrayOf(Manifest.permission.RECORD_AUDIO),
                         PERMISSION_REQUEST_CODE)
             } else {
-                       initAlanSDK();
+                       initAlanSDK()
             }
         }
 
-        /**You should also listen to the
-         * [ to update visual state according to the dialog state][com.alan.alansdk.AlanCallback.onDialogStateChanged]
-         */
-        //        View voiceBtn = findViewById(R.id.voice);
-        //        voiceBtn.setOnClickListener(new View.OnClickListener() {
-        //            @Override
-        //            public void onClick(View v) {
-        //                if (sdk != null && sdk.isInited()) {
-        //                    sdk.toggle();
-        //                }
-        //            }
-        //        });
+        voice.setOnClickListener {
+            if (alanButton.sdk.isInited) {
+                alanButton.sdk.toggle()
+            }
+        }
 
         val scriptMethodCallBtn = findViewById<View>(R.id.callScript)
         scriptMethodCallBtn.setOnClickListener {
-            alanButton!!.sdk.call("script::test", "{\"test\":1}") { methodName, response, error ->
+            //Call method on studio side(Alan backend)
+            //method name should starts with "script" namespace.
+            //params should be valid json string
+            alanButton.sdk.call("script::test", "{\"test\":1}") { methodName, response, error ->
                 if (error != null && !error.isEmpty()) {
                     Log.i("AlanResponse", "$methodName failed with: $error")
                 } else {
@@ -81,21 +75,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun initAlanSDK() {
         Alan.enableLogging(true)
-        //        sdk = Alan.getInstance();
-        //
-        //        Insert your project key here from "Embed code" button on the tutor.alan.app page
-        //        sdk.init("8e0b083e795c924d64635bba9c3571f42e956eca572e1d8b807a3e2338fdd0dc/stage");
-        //
-        //        sdk.registerCallback(new MyCallback());
-        //
-        //        Link Alan button with sdk so it can listen to the dialog state and control voice interaction
-        alanButton = findViewById(R.id.alanBtn)
-        alanButton!!.initSDK("wss://studio.alan-stage.app",
-                "bb42ab84666368c2e1b9fb493a3ca1dc2e956eca572e1d8b807a3e2338fdd0dc/stage",
-                null)
+        //Insert your project key here from "Embed code" button on the tutor.alan.app page
+        //Link Alan button with sdk so it can listen to the dialog state and control voice interaction
+        alanButton.initSDK("8e0b083e795c924d64635bba9c3571f42e956eca572e1d8b807a3e2338fdd0dc/stage")
 
-        alanButton?.sdk?.registerCallback(MyCallback())
-        alanButton?.sdk?.record()
+        //Register sdk listener to receive different events from sdk
+        alanButton.sdk.registerCallback(MyCallback())
         Toast.makeText(this, "Sdk inited successfully", Toast.LENGTH_SHORT).show()
     }
 
@@ -107,9 +92,12 @@ class MainActivity : AppCompatActivity() {
 
         override fun onDialogStateChanged(dialogState: DialogState) {
             super.onDialogStateChanged(dialogState)
-            if (dialogState == DialogState.IDLE) {
-                alanButton?.sdk?.record()
-            }
+            Log.i("AlanCallback", "Dialog state changed -> " + dialogState.name)
+        }
+
+        override fun onCommandReceived(eventCommand: EventCommand?) {
+            super.onCommandReceived(eventCommand)
+            Log.i("AlanCallback", "Got command from studio ->" + eventCommand?.data)
         }
     }
 

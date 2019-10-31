@@ -49,7 +49,7 @@
        android:layout_marginTop="24dp"
        android:id="@+id/voice"
        android:text="Voice toggle"
-       android:enabled="false"
+       android:enabled="true"
        style="@style/ButtonSimple"
        android:layout_width="0dp"
        android:layout_height="wrap_content" />
@@ -68,7 +68,7 @@
    <com.alan.alansdk.button.AlanButton
        app:layout_constraintBottom_toBottomOf="parent"
        app:layout_constraintEnd_toEndOf="parent"
-       android:id="@+id/alanBtn"
+       android:id="@+id/alanButton"
        app:button_horizontal_align="right"
        android:layout_width="match_parent"
        android:layout_height="wrap_content"/>
