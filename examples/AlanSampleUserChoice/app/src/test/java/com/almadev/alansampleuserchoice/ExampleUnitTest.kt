@@ -1,4 +1,4 @@
-package com.almadev.alansampleuserconfirmation
+package com.almadev.alansampleuserchoice
 
 import org.junit.Test
 

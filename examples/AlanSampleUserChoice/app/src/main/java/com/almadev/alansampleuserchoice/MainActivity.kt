@@ -1,9 +1,7 @@
-package com.almadev.alansampleuserconfirmation
+package com.almadev.alansampleuserchoice
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.alan.alansdk.AlanCallback
-import com.alan.alansdk.BasicSdkListener
 import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONObject
 
