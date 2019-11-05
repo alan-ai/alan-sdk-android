@@ -1,34 +1,27 @@
 apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android-extensions'
+
 apply plugin: 'kotlin-android'
 
+apply plugin: 'kotlin-android-extensions'
 
 def AlanMavenRepo = "https://mymavenrepo.com/repo/fSCXIHAoBMWBdlZGqq6n/"
 
-
 repositories {
     maven { url AlanMavenRepo }
-    flatDir {
-        dirs 'libs'
-    }
-    mavenCentral()
 }
+
 
 android {
     compileSdkVersion 29
+    buildToolsVersion "29.0.2"
     defaultConfig {
-        applicationId "app.alan.alanexample"
+        applicationId "com.almadev.alansampleuserconfirmation"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 3
-        versionName "1.2"
+        versionCode 1
+        versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
-        ndk {
-            abiFilters 'x86', 'armeabi-v7a'
-        }
     }
-
     buildTypes {
         release {
             minifyEnabled false
@@ -38,15 +31,15 @@ android {
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
 
     implementation "app.alan:sdk:3.1.1"
 
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.core:core-ktx:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.1.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
-    compile "androidx.core:core-ktx:+"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    androidTestImplementation 'androidx.test.ext:junit:1.1.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }
