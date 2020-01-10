@@ -32,6 +32,8 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        //Use `toggle` method if you need to simulate user interaction with Alan Button.
+        //It executes the same behavior if user taps the button
         voice.setOnClickListener {
             if (alanButton.sdk.isInited) {
                 alanButton.sdk.toggle()
@@ -41,9 +43,8 @@ class MainActivity : AppCompatActivity() {
         val scriptMethodCallBtn = findViewById<View>(R.id.callScript)
         scriptMethodCallBtn.setOnClickListener {
             //Call method on studio side(Alan backend)
-            //method name should starts with "script" namespace.
             //params should be valid json string
-            alanButton.sdk.call("script::test", "{\"test\":1}") { methodName, response, error ->
+            alanButton.sdk.callProjectApi("test", "{\"test\":1}") { methodName, response, error ->
                 if (error != null && !error.isEmpty()) {
                     Log.i("AlanResponse", "$methodName failed with: $error")
                 } else {
