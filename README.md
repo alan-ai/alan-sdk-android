@@ -25,13 +25,13 @@ repositories {
 dependencies {
 	...
 	//Adding the Alan SDK dependency
-    implementation "app.alan:sdk:3.0.7"
+    implementation "app.alan:sdk:<latest.version>"
 }
 ```
 
 ### Option 2. Download aar package and include it manually
 
-Download sdk from releases section [here](https://github.com/alan-ai/alan-android-sdk/releases/download/v3.0.7/AlanSDK_3.0.7.aar)
+Download sdk from releases section [here](https://github.com/alan-ai/alan-android-sdk/releases)
 Put in your <project>/app/libs folder (create one if needed) then modify your build.gradle file
 
 ```java
@@ -46,7 +46,7 @@ repositories {
 dependencies {
 	...
 	//Alan SDK dependency
- 	implementation (name: 'AlanSdk-3.0.7', ext: 'aar')
+ 	implementation (name: 'AlanSdk-<version>', ext: 'aar')
 }
 ```
 
@@ -77,6 +77,8 @@ protected void onCreate(Bundle savedInstanceState) {
 	alanButton.initSDK("<YOUR_PROJECT_ID_HERE>");
 }
 ```
+
+Now your Alan connection is ready and running. Try run your app and speak with Alan. 
 
 ## Init methods overloads
 Most of the time you will need only last overload. 
