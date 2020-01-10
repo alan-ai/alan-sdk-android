@@ -167,5 +167,12 @@ One can set extended logging with static method of the Alan object:
 ## Sample: 
 See our example of Alan Integration [here](https://github.com/alan-ai/alan-sdk-android/tree/master/examples/AlanSampleApp)
 
+### Other platforms:
+* [Native iOS](https://github.com/alan-ai/alan-sdk-ios)
+* [Web](https://github.com/alan-ai/alan-sdk-web)
+* [Cordova](https://github.com/alan-ai/alan-sdk-cordova)
+* [ReactNative](https://github.com/alan-ai/alan-sdk-reactnative)
+* [Flutter](https://pub.dev/packages/alan_voice)
+
 ## Have questions?
 If you have any questions or if something is missing in the documentation, please [contact us](mailto:support@alan.app), or tweet us [@alanvoiceai](https://twitter.com/alanvoiceai). We love hearing from you!).
