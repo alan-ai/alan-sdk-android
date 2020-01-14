@@ -52,16 +52,34 @@ dependencies {
 
 ## Add the Alan Button to your layout
 
+AlanButton class provides a view with voice button and instance methods to communicate with Alan Studio
+Create new AlanButton instance using xml layout:
+
 __activity_main.xml:__
+
 
 ```xml
  <com.alan.alansdk.button.AlanButton
        app:layout_constraintBottom_toBottomOf="parent"
        app:layout_constraintEnd_toEndOf="parent"
        android:id="@+id/alanBtn"
-       android:layout_width="wrap_content"
+       android:layout_width="match_parent"
        android:layout_height="wrap_content"/>
 ```
+
+Note that `layout_width`param should be set to `match_parent`
+
+## AlanConfig
+
+Object that describes parameters which will be provided for AlanButton.
+
+Use AlanConfig.Builder to create config with particular parameters
+
+|**Name**  | **Type** | **Description** |
+|--|--|--|
+| projectId  | String | Project key from Alan Studio |
+| dialogId  | String | (Optional) Dialog id for connection to a particular dialog |
+| dataObject  | String\|JSONObject | (Optional) Valid JSON string or JSONObject which will be passed to Alan Studio project |
 
 ## Connect to your Project in Alan Studio
 
@@ -74,90 +92,90 @@ private AlanButton alanButton;
 protected void onCreate(Bundle savedInstanceState) {
 	...
 	alanButton = findViewById(R.id.alanBtn);
-	alanButton.initSDK("<YOUR_PROJECT_ID_HERE>");
+    AlanConfig config = AlanConfig.builder()
+        .setProjectId("<YOUR_PROJECT_KEY>")
+        .build();
+	alanButton.initWithConfig(config);
 }
 ```
 
 Now your Alan connection is ready and running. Try run your app and speak with Alan. 
 
-## Init methods overloads
-Most of the time you will need only last overload. 
-authJson is used when you need to pass additional params to the script init. It should be a json parseable string
+### Handle events from AlanSDK.
+There are multiple callbacks coming from Alan backend. 
+In order to handle some of them user should extend AlanCallback class and register listener to AlanButton object.
+
+Callbacks definition:
 
 ```java
-public boolean initSDK(String server, String projectId, String dialogId, String authJson)
-
-public boolean initSDK(String server, String projectId, String dialogId)
-
-public boolean initSDK(String projectId, String dialogId)
-
-public boolean initSDK(String projectId)
-
-```
-*Default server is Alan.SERVER Constant.*
-*Here projectId == Alan Studio key*
-
-## Handling Alan callbacks
-
-*Handling all possible callbacks*
-
-```java
-class YourCallback implements AlanCallback {
-
-@Override
 /**
-* Alan sdk server connection state changed
-**/
-public void onConnectStateChanged(@NonNull ConnectionState connectState) {}
+     * Invokes when connection state with backend changed
+     * @param connectState
+     */
+    public void onConnectStateChanged(@NonNull ConnectionState connectState) {
 
-@Override
-/**
-* Alan voice state changed
-**/
-public void onDialogStateChanged(@NonNull DialogState dialogState) {}
+    }
 
-@Override
-/**
-* Alan recognized an intent
-**/
-public void onRecognizedEvent(EventRecognised eventRecognised) {}
+    /**
+     * Invokes on button interaction state changed
+     * @param dialogState
+     */
+    public void onDialogStateChanged(@NonNull DialogState dialogState) {
 
-@Override
-/**
-* Alan recognized speech. It is essentially speech2text callback
-**/
-public void onTextEvent(EventText eventText) {}
+    }
 
-@Override
-/**
-* Some other event coming.
-* Most of the time it would be your own script-defined events
-**/
-public void onUnknownEvent(String event, String payload) {}
+    /**
+     * Invokes when user speech is recognized on backend
+     * @param eventRecognised
+     */
+    public void onRecognizedEvent(EventRecognised eventRecognised) {
 
-@Override
-/**
-* Some error happens
-**/
-public void onError(String error) {}
+    }
 
-@Override
-/**
-* Callback from the script method calling via sdk.call(method, params)
-**/  
-public void onMethodCallResponse(String method, String body, String errors) {}
+    /**
+     * Invokes when some command from the script side is received
+     * @param eventCommand
+     */
+    public void onCommandReceived(EventCommand eventCommand) {
 
-}
+    }
+
+    /**
+     * Invokes on answer from the script
+     * @param eventText
+     */
+    public void onTextEvent(EventText eventText) {
+
+    }
+
+    /**
+     * Invokes on any other event
+     * @param event
+     * @param payload
+     */
+    public void onEvent(String event, String payload) {
+
+    }
+
+    /**
+    * Invokes on Alan errors
+    */
+    public void onError(String error) {
+
+    }
 ```
 
-*For handling only particular callback one can extends **BasicSdkListener***
+#### Example
 
 ```java
-class YourSimpleCallback extends BasicSdkListener {
-
-//Override smth if needed
-
-}
+AlanCallback myCallback = new AlanCallback() {
+            @Override
+            public void onCommandReceived(EventCommand eventCommand) {
+                super.onCommandReceived(eventCommand);
+                //Handle command here
+            }
+        };
+alanButton.registerCallback(myCallback);
 ```
 
 ## Logging
