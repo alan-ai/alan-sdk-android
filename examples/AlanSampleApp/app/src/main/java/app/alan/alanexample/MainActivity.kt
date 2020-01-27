@@ -10,11 +10,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.alan.alansdk.Alan
-import com.alan.alansdk.BasicSdkListener
+import com.alan.alansdk.AlanCallback
+import com.alan.alansdk.AlanConfig
 import com.alan.alansdk.alanbase.ConnectionState
 import com.alan.alansdk.alanbase.DialogState
 import com.alan.alansdk.events.EventCommand
 import kotlinx.android.synthetic.main.activity_main.*
+import org.json.JSONObject
 
 class MainActivity : AppCompatActivity() {
 
@@ -44,7 +46,8 @@ class MainActivity : AppCompatActivity() {
         scriptMethodCallBtn.setOnClickListener {
             //Call method on studio side(Alan backend)
             //params should be valid json string
-            alanButton.sdk.callProjectApi("test", "{\"test\":1}") { methodName, response, error ->
+            val callParams = JSONObject("{\"test\":1}")
+            alanButton.callProjectApi("test", callParams.toString()) { methodName, response, error ->
                 if (error != null && !error.isEmpty()) {
                     Log.i("AlanResponse", "$methodName failed with: $error")
                 } else {
@@ -78,14 +81,17 @@ class MainActivity : AppCompatActivity() {
         Alan.enableLogging(true)
         //Insert your project key here from "Embed code" button on the tutor.alan.app page
         //Link Alan button with sdk so it can listen to the dialog state and control voice interaction
-        alanButton.initSDK("8e0b083e795c924d64635bba9c3571f42e956eca572e1d8b807a3e2338fdd0dc/stage")
+        val config = AlanConfig.builder()
+                .setProjectId("8e0b083e795c924d64635bba9c3571f42e956eca572e1d8b807a3e2338fdd0dc/stage")
+                .build()
+        alanButton.initWithConfig(config)
 
         //Register sdk listener to receive different events from sdk
-        alanButton.sdk.registerCallback(MyCallback())
-        Toast.makeText(this, "Sdk inited successfully", Toast.LENGTH_SHORT).show()
+        alanButton.registerCallback(MyCallback())
+        Toast.makeText(this, "SDK inited successfully", Toast.LENGTH_SHORT).show()
     }
 
-    internal inner class MyCallback : BasicSdkListener() {
+    internal inner class MyCallback : AlanCallback() {
         override fun onConnectStateChanged(connectState: ConnectionState) {
             super.onConnectStateChanged(connectState)
             Log.i("AlanCallback", "Connection state changed -> " + connectState.name)
