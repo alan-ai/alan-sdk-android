@@ -25,7 +25,7 @@ repositories {
 dependencies {
 	...
 	//Adding the Alan SDK dependency
-    implementation "app.alan:sdk:4.0.3"
+    implementation "app.alan:sdk:4.1.2"
 }
 ```
 
@@ -46,7 +46,7 @@ repositories {
 dependencies {
 	...
 	//Alan SDK dependency
- 	implementation (name: 'AlanSDK-4.0.3', ext: 'aar')
+ 	implementation (name: 'AlanSDK-4.1.2', ext: 'aar')
 }
 ```
 
