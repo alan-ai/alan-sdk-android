@@ -7,7 +7,7 @@
 
 Refer to [this](https://alan.app/docs/client-api/android) documentation for details.
 
-Check out our[demo](https://play.google.com/store/apps/details?id=app.alan.playground).
+Check out our [demo](https://play.google.com/store/apps/details?id=app.alan.playground).
 
 Create a voice script for your application in [Alan Studio](https://studio.alan.app/register) and then add it to your app.
 
