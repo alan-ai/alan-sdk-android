@@ -1,4 +1,4 @@
-# Alan SDK for Android
+# Alan Android SDK
 
 [Alan Platform](https://alan.app/) • [Alan Studio](https://studio.alan.app/register) • [Docs](https://alan.app/docs/intro.html) • [FAQ](https://alan.app/docs/additional/faq.html) •
 [Blog](https://alan.app/blog/) • [Twitter](https://twitter.com/alanvoiceai)
