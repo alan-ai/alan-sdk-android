@@ -10,10 +10,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello Alan!"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/tvTitle"
+        android:layout_marginTop="64dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvList"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"/>
 
     <com.alan.alansdk.button.AlanButton
         app:layout_constraintBottom_toBottomOf="parent"
