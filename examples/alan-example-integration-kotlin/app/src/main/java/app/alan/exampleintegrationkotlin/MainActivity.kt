@@ -7,10 +7,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import app.alan.basicexample.R
 import app.alan.exampleintegrationkotlin.highlihts.HighlightAdapter
 import app.alan.exampleintegrationkotlin.highlihts.HighlightItem
+import com.alan.alansdk.Alan
 import com.alan.alansdk.AlanCallback
 import com.alan.alansdk.AlanConfig
 import com.alan.alansdk.events.EventCommand
 import kotlinx.android.synthetic.main.activity_main.*
+import org.json.JSONArray
+import org.json.JSONObject
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,8 +31,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        Alan.enableLogging(true)
         val alanConfig = AlanConfig.builder()
-                .setProjectId("314203787ccd9370974f1bf6b6929c1b2e956eca572e1d8b807a3e2338fdd0dc/prod")
+                .setProjectId("619761b4c85efe3364635bba9c3571f42e956eca572e1d8b807a3e2338fdd0dc/stage")
                 .build()
         alan_button.initWithConfig(alanConfig)
 
@@ -50,7 +54,8 @@ class MainActivity : AppCompatActivity() {
                     "highlight" -> {
                         //extract item to highlight and pass it to adapter
                         val itemToHighlight = commandObject.optString("item")
-                        highlightAdapter.turnHighlight(itemToHighlight)
+                        val item =  itemToHighlight.substringAfter("text").substringBefore(",").drop(1)
+                        highlightAdapter.turnHighlight(item)
                     }
                     else -> {
                         Log.d("Main", "Unknown command ${command}")
@@ -58,5 +63,14 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         })
+
+        val visualState = JSONObject()
+        visualState.put("screen", "second")
+        val itemJsonArray = JSONArray()
+        dummyHighlightItems.forEach {
+            itemJsonArray.put(it)
+        }
+        visualState.put("items", itemJsonArray)
+        alan_button.setVisualState(visualState.toString())
     }
 }
