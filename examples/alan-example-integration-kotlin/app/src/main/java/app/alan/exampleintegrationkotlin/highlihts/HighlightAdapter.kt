@@ -51,7 +51,7 @@ class HighlightAdapter(
         holder.bind(items[position])
     }
 
-    fun turnHighlight(item: String) {
+    fun turnHighlight(item: String): Int {
         val idx = items.indexOfFirst {
             it.text == item
         }
@@ -61,5 +61,6 @@ class HighlightAdapter(
           highlightItem.isHighlighted = index == idx
         }
         notifyDataSetChanged()
+        return idx
     }
 }

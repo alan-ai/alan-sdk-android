@@ -54,8 +54,8 @@ class MainActivity : AppCompatActivity() {
                     "highlight" -> {
                         //extract item to highlight and pass it to adapter
                         val itemToHighlight = commandObject.optString("item")
-                        val item =  itemToHighlight.substringAfter("text").substringBefore(",").drop(1)
-                        highlightAdapter.turnHighlight(item)
+                        val idx = highlightAdapter.turnHighlight(itemToHighlight)
+                        rvList.scrollToPosition(idx)
                     }
                     else -> {
                         Log.d("Main", "Unknown command ${command}")
@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity() {
         visualState.put("screen", "second")
         val itemJsonArray = JSONArray()
         dummyHighlightItems.forEach {
-            itemJsonArray.put(it)
+            itemJsonArray.put(it.text)
         }
         visualState.put("items", itemJsonArray)
         alan_button.setVisualState(visualState.toString())
