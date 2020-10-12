@@ -5,10 +5,11 @@ orbs:
 
 jobs:
   build:
-    working_directory: ~/examples/AlanSampleApp
     executor: android/android
         
     steps:
       - checkout
       - run:
+          name: Build Sample App (from examples/AlanSampleApp)
+          working_directory: ~/examples/AlanSampleApp
           command: ./gradlew build
