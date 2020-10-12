@@ -8,8 +8,7 @@ jobs:
     executor: android/android
         
     steps:
-      - checkout: 
-          path: ~/examples/AlanSampleApp    
+      - checkout
       - run:
           name: Build Sample App (from examples/AlanSampleApp)
-          command: ./gradlew build
+          command: ./examples/AlanSampleApp/gradlew assembleRelease
