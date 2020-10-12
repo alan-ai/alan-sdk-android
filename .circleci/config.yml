@@ -12,8 +12,11 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Print current folder
+          name: Print current folder path
           command: pwd
+      - run:
+          name: Print current folder content
+          command: ls -l
       - run:
           name: Build Sample App (from examples/AlanSampleApp)
           command: ./gradlew build
