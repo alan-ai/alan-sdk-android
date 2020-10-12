@@ -5,7 +5,7 @@ orbs:
 
 jobs:
   build:
-    working_directory: ./examples/AlanSampleApp
+    # working_directory: ./examples/AlanSampleApp
     
     executor: android/android
         
