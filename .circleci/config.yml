@@ -8,7 +8,7 @@ jobs:
     executor: android/android
         
     steps:
-      - checkout  
+      - checkout: 
           path: ~/examples/AlanSampleApp    
       - run:
           name: Build Sample App (from examples/AlanSampleApp)
