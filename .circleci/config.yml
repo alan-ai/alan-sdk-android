@@ -5,6 +5,7 @@ orbs:
 
 jobs:
   build:
+    working_directory: ~/examples/AlanSampleApp
     executor: android/android
         
     steps:
