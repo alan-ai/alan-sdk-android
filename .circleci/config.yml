@@ -10,19 +10,7 @@ jobs:
     executor: android/android
         
     steps:
-      - checkout
-      - run:
-          name: Print current folder path
-          command: pwd
-      - run:
-          name: Print current folder content
-          command: ls -l
-      - run:
-          name: Go to sample app folder
-          command: cd examples/AlanSampleApp
-      - run:
-          name: Print current folder path
-          command: pwd          
+      - checkout      
       - run:
           name: Build Sample App (from examples/AlanSampleApp)
-          command: ./gradlew build
+          command: ./examples/AlanSampleApp/gradlew build
