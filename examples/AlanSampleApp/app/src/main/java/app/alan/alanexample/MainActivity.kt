@@ -12,6 +12,7 @@ import androidx.core.content.ContextCompat
 import com.alan.alansdk.Alan
 import com.alan.alansdk.AlanCallback
 import com.alan.alansdk.AlanConfig
+import com.alan.alansdk.AlanState
 import com.alan.alansdk.alanbase.ConnectionState
 import com.alan.alansdk.alanbase.DialogState
 import com.alan.alansdk.events.EventCommand
@@ -92,14 +93,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     internal inner class MyCallback : AlanCallback() {
-        override fun onConnectStateChanged(connectState: ConnectionState) {
-            super.onConnectStateChanged(connectState)
-            Log.i("AlanCallback", "Connection state changed -> " + connectState.name)
-        }
-
-        override fun onDialogStateChanged(dialogState: DialogState) {
-            super.onDialogStateChanged(dialogState)
-            Log.i("AlanCallback", "Dialog state changed -> " + dialogState.name)
+        override fun onAlanStateChanged(alanState: AlanState) {
+            super.onAlanStateChanged(alanState)
+            Log.i("AlanCallback", "Alan state changed -> " + alanState.name)
         }
 
         override fun onCommandReceived(eventCommand: EventCommand?) {
