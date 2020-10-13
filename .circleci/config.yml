@@ -11,4 +11,4 @@ jobs:
       - checkout
       - run:
           name: Build Sample App (from examples/AlanSampleApp)
-          command: cd examples/AlanSampleApp;./gradlew assembleRelease
+          command: cd examples/AlanSampleApp && ./gradlew assembleRelease
