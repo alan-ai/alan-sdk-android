@@ -33,7 +33,7 @@ To get more details on how Alan AI works, see <a href="https://alan.app/platform
 * **No or minimum changes to your UI**: To create a conversational experience, you only need to get the Alan AI SDK and drop it to your app.
 * **Serverless environment**: No need to plan for, deploy and maintain any infrastructure or speech components - the Alan AI Platform does the bulk of the work.
 * **On-the-fly updates**: All changes to the dialogs become available immediately.
-* **Voice flow testing and analytics**: Alan AI Studio provides advanced tools for testing your dialog flows and getting the conversational analytics data on users' interactions, all in the same console.
+* **Dialog flow testing and analytics**: Alan AI Studio provides advanced tools for testing your dialog flows and getting the conversational analytics data on users' interactions, all in the same console.
 
 ## How to start
 
